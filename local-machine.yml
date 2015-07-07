@@ -1,0 +1,16 @@
+---
+- name: Install LMACs shit on a machine
+  hosts: all
+  vars:
+    #                           - { role: logstash }
+  roles:
+    - desktop-networking
+    - desktop-applications
+    - development-utils
+    - docker-host
+  tasks:
+      - name: Install packages
+        apt: pkg={{item}} state=present
+        with_items:
+          - nmap
+          - chromium-browser

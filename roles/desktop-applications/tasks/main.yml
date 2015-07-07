@@ -1,0 +1,9 @@
+- name: Install desktop/graphical applications
+  apt: pkg={{item}}
+  with_items:
+    - chromium-browser
+    - banshee
+    - gstreamer0.10-fluendo-mp3
+    - ubuntu-restricted-extras
+    - gstreamer1.0-libav
+    - gstreamer1.0-plugins-bad

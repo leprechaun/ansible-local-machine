@@ -1,0 +1,7 @@
+- name: Install network client packages
+  apt: pkg={{item}} state=present
+  with_items:
+    - network-manager-openvpn-gnome
+    - network-manager-openconnect-gnome
+    - vpnc-scripts
+    - sshuttle
