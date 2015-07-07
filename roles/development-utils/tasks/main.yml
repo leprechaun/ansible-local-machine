@@ -5,3 +5,11 @@
     - tig
     - vim
     - gitg
+    - jq
+    - htop
+
+- name: Install PIP based dependencies
+  pip: name={{item}}
+  with_items:
+    - boto3
+    - awscli
