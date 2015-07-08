@@ -8,3 +8,6 @@
     - gstreamer1.0-libav
     - gstreamer1.0-plugins-bad
     - exfat-utils
+    - flashplugin-installer
+    - flashplugin-downloader
+    - pepperflashplugin-nonfree
