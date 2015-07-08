@@ -1,0 +1,15 @@
+---
+- name: Set up my user account
+  hosts: all
+  vars:
+    #                           - { role: logstash }
+  tasks:
+      - name: clone dotfiles from github
+        git: repo=https://github.com/leprechaun/dotfiles.git dest=/home/leprechaun/.dotfiles
+
+      - name: Synlink to dotfiles
+        file: src="{{item.src}}" dest="{{item.dest}}" state=link
+        with_items:
+          - { src: "/home/leprechaun/.dotfiles/git/gitconfig", dest: "/home/leprechaun/.gitconfig", state: link }
+          - { src: "/home/leprechaun/.dotfiles/vim/vimrc", dest: "/home/leprechaun/.vimrc", state: link }
+          - { src: "/home/leprechaun/.dotfiles/tmux/tmux.conf", dest: "/home/leprechaun/.tmux.conf", state: link }
