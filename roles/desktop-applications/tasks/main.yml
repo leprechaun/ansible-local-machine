@@ -9,3 +9,8 @@
     - gstreamer1.0-plugins-bad
     - exfat-utils
     - pepperflashplugin-nonfree
+    - openarena
+    - lm-sensors
+    - vlc
+    - gimp
+    - virtualbox
