@@ -12,6 +12,7 @@
     - pylint
     - jsonlint
     - exuberant-ctags
+    - tmux
 
 - name: Install PIP based dependencies
   pip: name={{item}}
