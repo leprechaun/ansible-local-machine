@@ -7,6 +7,9 @@
       - name: clone dotfiles from github
         git: repo=https://github.com/leprechaun/dotfiles.git dest=/home/leprechaun/.dotfiles
 
+      - name: Clone Vundle form github
+      git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/leprechaun/.vim/bundle/Vundle.vim
+
       - name: Synlink to dotfiles
         file: src="{{item.src}}" dest="{{item.dest}}" state=link
         with_items:
