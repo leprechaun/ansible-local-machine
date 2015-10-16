@@ -4,4 +4,12 @@
     - network-manager-openvpn-gnome
     - network-manager-openconnect-gnome
     - vpnc-scripts
+  tags:
+    - gui
+
+- name: Install network client packages
+  apt: pkg={{item}} state=present
+  with_items:
     - sshuttle
+  tags:
+    - cli

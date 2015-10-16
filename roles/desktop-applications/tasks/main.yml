@@ -7,10 +7,18 @@
     - ubuntu-restricted-extras
     - gstreamer1.0-libav
     - gstreamer1.0-plugins-bad
-    - exfat-utils
     - pepperflashplugin-nonfree
     - openarena
-    - lm-sensors
     - vlc
     - gimp
     - virtualbox
+  tags:
+    - gui
+
+- name: Install desktop/graphical applications
+  apt: pkg={{item}}
+  with_items:
+    - exfat-utils
+    - lm-sensors
+  tags:
+    - cli

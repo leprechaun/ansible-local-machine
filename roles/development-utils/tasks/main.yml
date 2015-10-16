@@ -13,6 +13,16 @@
     - jsonlint
     - exuberant-ctags
     - tmux
+  tags:
+    - cli
+
+- name: install development related packages
+  apt: pkg={{item}}
+  with_items:
+    - gitg
+  tags:
+    - gui
+
 
 - name: Install PIP based dependencies
   pip: name={{item}}
