@@ -14,3 +14,9 @@
         with_items:
           - nmap
           - chromium-browser
+
+      - name: Install en_CA.UTF-8 locale
+        cmd: locale-gen en_CA.UTF-8
+
+      - name: Update the en_CA.UTF-8 locale
+        cmd: update-locale LANG=en_CA.UTF-8
