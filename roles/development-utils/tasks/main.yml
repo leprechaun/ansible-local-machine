@@ -4,7 +4,6 @@
     - git
     - tig
     - vim
-    - gitg
     - jq
     - htop
     - build-essential
@@ -13,6 +12,8 @@
     - jsonlint
     - exuberant-ctags
     - tmux
+    - clang
+    - python-pip
   tags:
     - cli
 
