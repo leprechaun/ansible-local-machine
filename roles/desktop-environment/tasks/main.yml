@@ -1,0 +1,6 @@
+- name: Install a Gnome environment
+  apt: pkg={{item}} state=present
+  with_items:
+    - ubuntu-gnome-desktop
+  tags:
+    - gui

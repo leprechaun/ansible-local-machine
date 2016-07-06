@@ -4,6 +4,7 @@
   vars:
     #                           - { role: logstash }
   roles:
+    - desktop-environment
     - desktop-networking
     - desktop-applications
     - development-utils
