@@ -1,8 +1,4 @@
-- name: Install official docker repository apt-key
-  apt_key: url=https://get.docker.com/gpg state=present
-
-- name: Install official docker repository
-  apt_repository: repo="deb https://get.docker.com/ubuntu docker main" state=present update_cache=yes
-
 - name: Install docker
-  apt: pkg=lxc-docker state=present
+  apt:
+    pkg: docker.io
+    state: present
