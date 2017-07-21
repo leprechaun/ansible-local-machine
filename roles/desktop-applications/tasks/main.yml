@@ -6,6 +6,7 @@
     - ubuntu-restricted-extras
     - gstreamer1.0-libav
     - gstreamer1.0-plugins-bad
+    - ncmpcpp
 #    - pepperflashplugin-nonfree
 #    - vlc
 #    - gimp
