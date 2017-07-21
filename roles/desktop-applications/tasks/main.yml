@@ -22,3 +22,18 @@
     - lm-sensors
   tags:
     - cli
+
+- name: Add Mopidy apt key
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
+    state: present
+
+- name: Add Mopidy Apt repo
+  apt_repository:
+    repo: deb http://apt.mopidy.com/ jessie main contrib non-free
+    state: present
+
+- name: Install Mopidy
+  apt:
+    name: mopidy
+    state: present
