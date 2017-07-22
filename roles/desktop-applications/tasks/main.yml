@@ -38,3 +38,11 @@
   apt:
     name: mopidy
     state: present
+
+- name: Install Mopidy plugins
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - Mopidy-MusicBox-Webclient
+  - Mopidy-Scrobbler
