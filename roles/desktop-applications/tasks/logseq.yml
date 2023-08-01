@@ -1,0 +1,15 @@
+- name: Download Logseq
+  get_url:
+    url: https://github.com/logseq/logseq/releases/download/0.9.11/Logseq-linux-x64-0.9.11.AppImage
+    dest: /usr/local/bin/logseq
+    mode: 0755
+
+- name: Get Logseq Logo
+  get_url:
+    url: https://raw.githubusercontent.com/logseq/logseq/5cab22187c72bc9c39c186efe3f591c5cb31e6df/resources/icons/logseq.png
+    dest: /usr/share/icons/logseq.png
+
+- name: Install desktop entry for Logseq
+  template:
+    src: logseq.desktop.j2
+    dest: /usr/share/applications/logseq.desktop

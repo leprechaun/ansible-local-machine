@@ -1,0 +1,16 @@
+- name: Remove Firefox-ESR
+  apt:
+    pkg: firefox-esr
+    state: absent
+
+- name: Install Firefox from the internet
+  unarchive:
+    remote_src: true
+    src: "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"
+    dest: /opt/
+
+- name: Install desktop entry for firefox
+  template:
+    src: firefox.desktop.j2
+    dest: /usr/share/applications/firefox.desktop
+

@@ -1,15 +1,17 @@
 - name: Install network client packages
-  apt: pkg={{item}} state=present
-  with_items:
-    - network-manager-openvpn-gnome
-    - network-manager-openconnect-gnome
-    - vpnc-scripts
+  apt:
+    state: present
+    pkg:
+      - wireguard
+      - network-manager-openvpn-gnome
+      - vpnc-scripts
   tags:
     - gui
 
 - name: Install network client packages
-  apt: pkg={{item}} state=present
-  with_items:
-    - sshuttle
+  apt:
+    state: present
+    pkg:
+      - sshuttle
   tags:
     - cli

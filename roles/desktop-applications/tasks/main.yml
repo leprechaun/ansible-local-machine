@@ -1,48 +1,25 @@
 - name: Install desktop/graphical applications
-  apt: pkg={{item}}
-  with_items:
-    - chromium-browser
-    - gstreamer1.0-fluendo-mp3
-    - ubuntu-restricted-extras
-    - gstreamer1.0-libav
-    - gstreamer1.0-plugins-bad
-    - ncmpcpp
-#    - pepperflashplugin-nonfree
-#    - vlc
-#    - gimp
-#    - virtualbox
-#    - openarena
-#    - banshee
-  tags:
-    - gui
-
-- name: Install desktop/graphical applications
-  apt: pkg={{item}}
-  with_items:
-    - exfat-utils
-    - lm-sensors
-  tags:
-    - cli
-
-- name: Add Mopidy apt key
-  apt_key:
-    url: https://apt.mopidy.com/mopidy.gpg
-    state: present
-
-- name: Add Mopidy Apt repo
-  apt_repository:
-    repo: deb http://apt.mopidy.com/ jessie main contrib non-free
-    state: present
-
-- name: Install Mopidy
   apt:
-    name: mopidy
-    state: present
+    install_recommends: false
+    name:
+      - gimp
+      - gitg
 
-- name: Install Mopidy plugins
-  pip:
-    name: "{{ item }}"
-    state: present
-  with_items:
-  - Mopidy-MusicBox-Webclient
-  - Mopidy-Scrobbler
+- name: Install Firefox
+  import_tasks: firefox.yml
+
+- name: Install Signal
+  import_tasks: signal.yml
+
+- name: Install Zoom
+  apt:
+    deb: https://zoom.us/client/latest/zoom_amd64.deb
+
+- name: Install Bitwarden
+  apt:
+    deb: https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=deb
+
+- name: Install Vagrant
+  apt:
+    pkg:
+      - vagrant-libvirt

@@ -1,4 +1,6 @@
-- name: Install docker
+- name: Install basic packages
   apt:
-    pkg: docker.io
-    state: present
+    install_recommends: false
+    name:
+      - uidmap # uninstalled dependency of podman
+      - podman

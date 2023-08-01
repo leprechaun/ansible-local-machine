@@ -1,32 +1,23 @@
-- name: install development related packages
-  apt: pkg={{item}}
-  with_items:
-    - git
-    - tig
-    - vim
-    - jq
-    - htop
-    - build-essential
-    - cmake
-    - pylint
-    - jsonlint
-    - exuberant-ctags
-    - tmux
-    - clang
-    - python-pip
-  tags:
-    - cli
+- name: Install development related packages
+  apt:
+    install_recommends: false
+    name:
+      - git
+      - tig
+      - build-essential
+      - vim
+      - jq
+      - htop
+      - tmux
+      - python3-pip
+      - awscli
+      - tmux
+      - bash-completion
+      - pipx
 
-- name: install development related packages
-  apt: pkg={{item}}
-  with_items:
-    - gitg
-  tags:
-    - gui
-
-
-- name: Install PIP based dependencies
-  pip: name={{item}}
-  with_items:
-    - boto3
-    - awscli
+- name: Install Bitwarden CLI
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: https://github.com/bitwarden/clients/releases/download/cli-v2022.6.2/bw-linux-2022.6.2.zip
+    dest: /usr/local/bin/
+    mode: 0755

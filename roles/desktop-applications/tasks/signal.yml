@@ -1,0 +1,15 @@
+- name: Add Signal APT Key
+  apt_key:
+    url: https://updates.signal.org/desktop/apt/keys.asc
+    state: present
+
+- name: Add Signal APT Repo
+  apt_repository:
+    repo: deb https://updates.signal.org/desktop/apt xenial main
+    state: present
+    update_cache: true
+
+- name: Install Signal
+  apt:
+    pkg: signal-desktop
+    state: present

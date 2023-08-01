@@ -1,23 +1,31 @@
 ---
 - name: Install LMACs shit on a machine
   hosts: all
-  vars:
-    #                           - { role: logstash }
+  become: true
   roles:
     - desktop-environment
     - desktop-networking
     - desktop-applications
     - development-utils
-    - docker-host
+    - docker-host # actually podman
+  tasks: []
+
+- name: User setup
+  hosts: all
+  become: true
+  become_user: vagrant
   tasks:
-      - name: Install packages
-        apt: pkg={{item}} state=present
-        with_items:
-          - nmap
-          - chromium-browser
+    - name: Install dotbot
+      pip:
+        executable: pipx
+          #extra_args: --python python3.10
+        name:
+          - dotbot
 
-      - name: Install en_CA.UTF-8 locale
-        command: locale-gen en_CA.UTF-8
+    - name: Read-write git checkout from github
+      ansible.builtin.git:
+        repo: https://github.com/leprechaun/dotfiles.git
+        dest: /home/leprechaun/.dotfiles/
 
-      - name: Update the en_CA.UTF-8 locale
-        command: update-locale LANG=en_CA.UTF-8
+    - name: Install dotfiles
+      command: /home/leprechaun/.local/bin/dotbot -c /home/leprechaun/.dotfiles/dotbot.yml
