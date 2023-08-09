@@ -3,15 +3,4 @@
     state: present
     pkg:
       - wireguard
-      - network-manager-openvpn-gnome
-      - vpnc-scripts
-  tags:
-    - gui
-
-- name: Install network client packages
-  apt:
-    state: present
-    pkg:
       - sshuttle
-  tags:
-    - cli

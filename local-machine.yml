@@ -15,17 +15,15 @@
   become: true
   become_user: vagrant
   tasks:
-    - name: Install dotbot
-      pip:
-        executable: pipx
-          #extra_args: --python python3.10
-        name:
-          - dotbot
-
-    - name: Read-write git checkout from github
-      ansible.builtin.git:
-        repo: https://github.com/leprechaun/dotfiles.git
-        dest: /home/leprechaun/.dotfiles/
-
-    - name: Install dotfiles
-      command: /home/leprechaun/.local/bin/dotbot -c /home/leprechaun/.dotfiles/dotbot.yml
+#   - name: Install dotbot
+#     pip:
+#       executable: pipx
+#         #extra_args: --python python3.10
+#       name:
+#         - dotbot
+#   - name: Read-write git checkout from github
+#     ansible.builtin.git:
+#       repo: https://github.com/leprechaun/dotfiles.git
+#       dest: /home/leprechaun/.dotfiles/
+#   - name: Install dotfiles
+#     command: /home/leprechaun/.local/bin/dotbot -c /home/leprechaun/.dotfiles/dotbot.yml

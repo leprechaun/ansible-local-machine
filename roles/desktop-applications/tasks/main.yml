@@ -19,7 +19,15 @@
   apt:
     deb: https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=deb
 
-- name: Install Vagrant
+- name: Install Vagrant & QEMU/KVM
   apt:
     pkg:
       - vagrant-libvirt
+
+- name: Install Mopidy & Co
+  apt:
+    pkg:
+      - mopidy
+      - mopidy-local
+      - mopidy-mpd
+      - mopidy-mpris
