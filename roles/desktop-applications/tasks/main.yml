@@ -17,12 +17,11 @@
 
 - name: Install Bitwarden
   apt:
-    deb: https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=deb
+    #deb: https://vault.bitwarden.com/download/?app=desktop&platform=linux&variant=deb
+    deb: https://github.com/bitwarden/clients/releases/download/desktop-v{{ bitwarden_version }}/Bitwarden-{{ bitwarden_version }}-amd64.deb
 
-- name: Install Vagrant & QEMU/KVM
-  apt:
-    pkg:
-      - vagrant-libvirt
+- name: Install Logseq
+  import_tasks: logseq.yml
 
 - name: Install Mopidy & Co
   apt:
@@ -31,3 +30,5 @@
       - mopidy-local
       - mopidy-mpd
       - mopidy-mpris
+      - gmpc
+      - mpc

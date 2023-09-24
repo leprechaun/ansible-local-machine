@@ -4,3 +4,5 @@
     name:
       - uidmap # uninstalled dependency of podman
       - podman
+      - fuse-overlayfs
+      - slirp4netns

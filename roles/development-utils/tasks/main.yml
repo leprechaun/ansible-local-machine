@@ -19,6 +19,32 @@
 - name: Install Bitwarden CLI
   ansible.builtin.unarchive:
     remote_src: true
-    src: https://github.com/bitwarden/clients/releases/download/cli-v2022.6.2/bw-linux-2022.6.2.zip
+    src: https://github.com/bitwarden/clients/releases/download/cli-v{{ bitwarden_version }}/bw-linux-{{ bitwarden_version }}.zip
     dest: /usr/local/bin/
     mode: 0755
+
+# helm plugin install https://github.com/databus23/helm-diff
+- name: Get Helm
+  ansible.builtin.unarchive:
+    src: https://get.helm.sh/helm-v{{ helm_version }}-linux-amd64.tar.gz
+    dest: /usr/local/bin/
+    include: linux-amd64/helm
+    extra_opts: [--strip-components=1]
+    mode: 0755
+    remote_src: true
+
+- name: Get Helmfile
+  unarchive:
+    src: https://github.com/helmfile/helmfile/releases/download/v{{ helmfile_version }}/helmfile_{{ helmfile_version }}_linux_amd64.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+    mode: 0755
+    include:
+      - helmfile
+
+- name: Install AWS SSM SSH Plugin
+  apt:
+    deb: https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb
+
+- name: Install Hashicorp things
+  import_tasks: hashicorp.yml

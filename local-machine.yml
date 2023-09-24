@@ -1,7 +1,11 @@
 ---
 - name: Install LMACs shit on a machine
-  hosts: all
+  hosts: all,localhost
   become: true
+  vars:
+    bitwarden_version: "2023.9.0"
+    helm_version: "3.12.3"
+    helmfile_version: "0.157.0"
   roles:
     - desktop-environment
     - desktop-networking
@@ -10,11 +14,13 @@
     - docker-host # actually podman
   tasks: []
 
-- name: User setup
-  hosts: all
-  become: true
-  become_user: vagrant
-  tasks:
+# pipx & poetry
+
+# name: User setup
+# hosts: all,localhost
+# become: true
+# become_user: vagrant
+# tasks:
 #   - name: Install dotbot
 #     pip:
 #       executable: pipx

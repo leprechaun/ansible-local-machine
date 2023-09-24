@@ -1,0 +1,15 @@
+- name: Hashicorp - Add the APT key
+  apt_key:
+    url: "https://apt.releases.hashicorp.com/gpg"
+    keyring: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+
+- name: Hashicorp - Add the REPO
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com bookworm main"
+
+- name: Hashicorp - Install things
+  apt:
+    pkg:
+      - terraform
+      - packer
+      - vagrant # does not include the libvirt provider plugin, needs to be installed by the user
