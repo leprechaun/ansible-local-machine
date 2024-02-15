@@ -5,3 +5,15 @@
       - task-gnome-desktop
   tags:
     - gui
+
+# - name: Sway and stuff
+#   apt:
+#     state: present
+#     pkg:
+#       - sway
+#       - swaybg
+#       - waybar
+#       - wofi
+#       - sway-backgrounds
+#       - sway-notification-center
+#         #- sway-idle

@@ -15,6 +15,10 @@
       - bash-completion
       - pipx
       - ansible
+      - shellcheck
+      - libssl-dev # for probe-rs
+      - libudev-dev # for probe-rs
+      - libvirt-clients
 
 - name: Install Bitwarden CLI
   ansible.builtin.unarchive:
@@ -41,6 +45,14 @@
     mode: 0755
     include:
       - helmfile
+- name: Get Helmfile
+  unarchive:
+    src: https://github.com/trufflesecurity/trufflehog/releases/download/v3.67.6/trufflehog_3.67.6_linux_amd64.tar.gz
+    dest: /usr/local/bin/
+    remote_src: yes
+    mode: 0755
+    include:
+      - trufflehog
 
 - name: Install AWS SSM SSH Plugin
   apt:
@@ -48,3 +60,20 @@
 
 - name: Install Hashicorp things
   import_tasks: hashicorp.yml
+
+- name: Install Kubescape
+  get_url:
+    url: https://github.com/kubescape/kubescape/releases/download/v3.0.3/kubescape-ubuntu-latest
+    dest: /usr/local/bin/kubescape
+    mode: 0755
+
+- name: Install the udev rules for probe-rs
+  get_url:
+    url: https://probe.rs/files/69-probe-rs.rules
+    dest: /etc/udev/rules.d/69-probe-rs.rules
+
+- name: Reload udev
+  command: "udevadm control --reload"
+
+- name: Reload udev (force on connected devices)
+  command: "udevadm trigger"
