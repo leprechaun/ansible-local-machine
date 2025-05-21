@@ -1,0 +1,24 @@
+
+- name: Add Mopidy APT Key
+  apt_key:
+    url: https://apt.mopidy.com/mopidy.gpg
+    keyring: /usr/share/keyrings/mopidy-keyring.gpg
+    state: present
+
+- name: Add Signal APT Repo
+  apt_repository:
+
+    repo: "deb [signed-by=/usr/share/keyrings/mopidy-keyring.gpg] https://apt.mopidy.com/ bookworm main contrib non-free"
+    state: present
+    update_cache: true
+    filename: mopidy
+
+- name: Install Mopidy & Co
+  apt:
+    pkg:
+      - mopidy
+      - mopidy-local
+      - mopidy-mpd
+      - mopidy-mpris
+      - gmpc
+      - mpc

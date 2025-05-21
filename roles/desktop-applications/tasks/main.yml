@@ -4,6 +4,8 @@
     name:
       - gimp
       - gitg
+      - desk
+      - exo-utils
 
 - name: Install Firefox
   import_tasks: firefox.yml
@@ -23,12 +25,5 @@
 - name: Install Logseq
   import_tasks: logseq.yml
 
-- name: Install Mopidy & Co
-  apt:
-    pkg:
-      - mopidy
-      - mopidy-local
-      - mopidy-mpd
-      - mopidy-mpris
-      - gmpc
-      - mpc
+- name: Install Mopidy
+  import_tasks: mopidy.yml
